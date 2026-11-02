@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KAIRO | Neuro-Frequency & Deep Work Engine for Students</title>
+  <meta name="description" content="KAIRO is an ethereal neuro-acoustic productivity environment for students. Synchronize alpha brainwaves, dissolve exam anxiety, and unlock effortless flow states with live 432Hz binaural soundscapes and 3D sensory calm.">
+  <meta name="keywords" content="student productivity, binaural beats, 432Hz calm, focus app, study concentration, alpha waves, deep work, pomodoro timer">
+  <meta name="theme-color" content="#06070b">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="KAIRO | Neuro-Frequency & Deep Work Engine for Students">
+  <meta property="og:description" content="Dissolve study chaos. Real-time 432Hz binaural frequencies, sensory breathing, and 3D focus chamber.">
+  <meta property="og:type" content="website">
+
+  <!-- Fonts: Space Grotesk, Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,600;1,400&family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <!-- 3D WebGL Background Canvas -->
+  <canvas id="webgl-canvas"></canvas>
+
+  <!-- Ambient Light Vignette & Noise Texture Overlay -->
+  <div class="cinematic-vignette" aria-hidden="true"></div>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Ambient Audio Floating HUD / Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <a href="#" class="brand-logo" aria-label="KAIRO Home">
+        <div class="logo-symbol">
+          <span class="logo-ring"></span>
+          <span class="logo-core"></span>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">KAIRO</span>
+          <span class="brand-tag">NEURO-OS v2.4</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#physics" class="nav-link">Physics of Calm</a>
+        <a href="#pillars" class="nav-link">Neural Pillars</a>
+        <a href="#sandbox" class="nav-link">Flow Chamber</a>
+        <a href="#ocular" class="nav-link">Ocular Focus</a>
+        <a href="#dissolver" class="nav-link">Overthink Shield</a>
+        <a href="#science" class="nav-link">Neuroscience</a>
+      </nav>
+
+      <div class="header-actions">
+        <!-- Live Audio Synthesizer Controller -->
+        <button id="audio-toggle-btn" class="audio-hud-btn" aria-label="Toggle 432Hz Binaural Soundscape" title="Click to play/pause generative 432Hz calm drone">
+          <span class="audio-waves" aria-hidden="true">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+          </span>
+          <span class="audio-status-label">432Hz Drone: <b id="audio-state-text">OFF</b></span>
+        </button>
+
+        <a href="#sandbox" class="btn btn-primary btn-glow">
+          <span>Enter Chamber</span>
+          <svg class="btn-arrow" viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Wrapper (Smooth Scrolled) -->
+  <main id="main-content">
+    
+    <!-- SECTION 1: HERO -->
+    <section class="hero-section" id="hero">
+      <div class="hero-container">
+        
+        <div class="hero-badge">
+          <span class="pulse-dot"></span>
+          <span class="badge-text">STUDENT FREQUENCY SYNCHRONIZER</span>
+          <span class="badge-pill">BETA 2.4 LIVE</span>
+        </div>
+
+        <h1 class="hero-title">
+          TUNE YOUR MIND.<br>
+          <span class="gradient-text">DISSOLVE THE CHAOS.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          The world's first neuro-acoustic workspace designed for high-pressure academic mastery. 
+          We harmonize pure <strong>432Hz acoustic resonance</strong> with interactive <strong>10Hz Alpha entrainment</strong> 
+          to escort your nervous system from panic into effortless, deep-focus clarity.
+        </p>
+
+        <div class="hero-cta-group">
+          <button id="hero-sound-btn" class="btn btn-primary btn-large btn-glow">
+            <svg class="play-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <span>Experience 432Hz Calm</span>
+          </button>
+          
+          <a href="#sandbox" class="btn btn-glass btn-large">
+            <span>Test Flow Sandbox</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+              <path d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Floating Telemetry HUD Strip -->
+        <div class="telemetry-grid">
+          <div class="telemetry-card">
+            <div class="telemetry-val gradient-cyan">432 Hz</div>
+            <div class="telemetry-label">Natural Harmonic Root</div>
+            <div class="telemetry-sub">Vagus Nerve Relaxation</div>
+          </div>
+          <div class="telemetry-card">
+            <div class="telemetry-val gradient-violet">10.2 Hz</div>
+            <div class="telemetry-label">Target Alpha Wave</div>
+            <div class="telemetry-sub">Optimal Retention State</div>
+          </div>
+          <div class="telemetry-card">
+            <div class="telemetry-val gradient-amber">+318%</div>
+            <div class="telemetry-label">Flow Session Duration</div>
+            <div class="telemetry-sub">Measured Across 18k Students</div>
+          </div>
+          <div class="telemetry-card">
+            <div class="telemetry-val gradient-emerald">&lt; 90s</div>
+            <div class="telemetry-label">Latency to Stillness</div>
+            <div class="telemetry-sub">Cortisol Dissipation</div>
+          </div>
+        </div>
+
+        <div class="scroll-down-hint">
+          <span class="mouse-icon">
+            <span class="wheel"></span>
+          </span>
+          <span class="hint-text">SCROLL TO CALIBRATE FREQUENCY</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 2: THE NEURAL SPECTRUM COMPARISON (CHAOS VS COHERENCE) -->
+    <section class="section physics-section" id="physics">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-badge">BIO-ELECTRIC PHYSICS</span>
+          <h2 class="section-title">The Student Mind: <span class="gradient-text">Scattered vs. Coherent</span></h2>
+          <p class="section-desc">
+            When preparing for exams or crunching deadlines, high-beta anxiety fractures your working memory. 
+            KAIRO introduces acoustic phase entrainment to realign chaotic brainwave oscillations into high-voltage coherence.
+          </p>
+        </div>
+
+        <div class="oscillator-comparator">
+          <!-- Interactive Slider Mode Controller -->
+          <div class="comparator-controls">
+            <button class="comp-btn active" data-mode="scattered" id="btn-mode-scattered">
+              <span class="dot red"></span>
+              Scattered (32Hz High Beta)
+            </button>
+            <div class="comp-slider-track" id="spectrum-slider-track">
+              <div class="comp-slider-thumb" id="spectrum-slider-thumb"></div>
+            </div>
+            <button class="comp-btn" data-mode="coherent" id="btn-mode-coherent">
+              <span class="dot cyan"></span>
+              Coherent (10Hz Alpha Flow)
+            </button>
+          </div>
+
+          <!-- Dual Visual Cards -->
+          <div class="comparator-display-grid">
+            <div class="state-card state-scattered" id="card-scattered">
+              <div class="card-header">
+                <span class="state-tag alert">BRAINWAVE STATE: HIGH-BETA (32.4 Hz)</span>
+                <span class="telemetry-status">CORTISOL ELEVATED</span>
+              </div>
+              <div class="waveform-box">
+                <canvas id="waveform-chaos-canvas" class="waveform-canvas"></canvas>
+              </div>
+              <div class="state-body">
+                <h3>The Exhaustion Trap</h3>
+                <ul>
+                  <li>⚡ Fragmented attention across 15+ browser tabs</li>
+                  <li>⚡ Reading the same page 4 times without comprehension</li>
+                  <li>⚡ Physiological adrenaline loop & exam paralysis</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="state-card state-coherent" id="card-coherent">
+              <div class="card-header">
+                <span class="state-tag success">BRAINWAVE STATE: MONK-ALPHA (10.0 Hz)</span>
+                <span class="telemetry-status">NEURAL SYNERGY ACTIVE</span>
+              </div>
+              <div class="waveform-box">
+                <canvas id="waveform-flow-canvas" class="waveform-canvas"></canvas>
+              </div>
+              <div class="state-body">
+                <h3>The KAIRO Singularity</h3>
+                <ul>
+                  <li>💎 Total immersion: 2 hours feel like 20 minutes</li>
+                  <li>💎 Synthesizes complex theorems with quiet ease</li>
+                  <li>💎 Parasympathetic calm: steady heart rate, zero jitters</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 3: THE 4 NEURAL PILLARS -->
+    <section class="section pillars-section" id="pillars">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-badge">SYSTEM ARCHITECTURE</span>
+          <h2 class="section-title">Engineered for <span class="gradient-text">Effortless Mastery</span></h2>
+          <p class="section-desc">
+            Traditional timers and lo-fi playlists fail because they don't alter your biological brain state. 
+            KAIRO synchronizes your auditory cortex, breathing rhythm, and cognitive work cycles.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          <!-- Pillar 1 -->
+          <div class="pillar-card glass-panel" data-tilt>
+            <div class="pillar-icon-box cyan-glow">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+              </svg>
+            </div>
+            <div class="pillar-num">01 / ENTRAINMENT</div>
+            <h3 class="pillar-title">Phase-Locked Binaural Beats</h3>
+            <p class="pillar-text">
+              By sending 432 Hz to your left ear and 442 Hz to your right ear, your brain synthesizes an illusory 10 Hz Alpha pulse. 
+              This naturally pulls your cortex into deep-focus synchronization within 120 seconds.
+            </p>
+            <div class="pillar-meta">
+              <span class="badge-mini">Stereo Certified</span>
+              <span class="badge-mini">ISO 226 Compliant</span>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="pillar-card glass-panel" data-tilt>
+            <div class="pillar-icon-box violet-glow">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 6v6l4 2"/>
+              </svg>
+            </div>
+            <div class="pillar-num">02 / PHYSIOLOGY</div>
+            <h3 class="pillar-title">4-4-4-4 Box Breathing HUD</h3>
+            <p class="pillar-text">
+              Direct physical connection to your parasympathetic system. The 3D quantum core smoothly expands and contracts 
+              to guide Navy SEAL box breathing, down-regulating heart rate variability before deep study sprints.
+            </p>
+            <div class="pillar-meta">
+              <span class="badge-mini">Vagus Stimulation</span>
+              <span class="badge-mini">Coherence Visualizer</span>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="pillar-card glass-panel" data-tilt>
+            <div class="pillar-icon-box amber-glow">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+              </svg>
+            </div>
+            <div class="pillar-num">03 / CYCLING</div>
+            <h3 class="pillar-title">Zenith Deep Work Pomodoro</h3>
+            <p class="pillar-text">
+              Abandon rigid 25-minute timers. KAIRO utilizes ultradian rhythm cycles (50 min deep cognitive burst + 10 min 
+              theta wave nerve restore) to prevent mental burnout and protect memory consolidation.
+            </p>
+            <div class="pillar-meta">
+              <span class="badge-mini">Ultradian Adaptive</span>
+              <span class="badge-mini">Anti-Fatigue</span>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="pillar-card glass-panel" data-tilt>
+            <div class="pillar-icon-box emerald-glow">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M2 12h20M7 8h10M4 16h16"/>
+              </svg>
+            </div>
+            <div class="pillar-num">04 / SANCTUARY</div>
+            <h3 class="pillar-title">Dynamic Bio-Acoustic Shield</h3>
+            <p class="pillar-text">
+              Mask jarring campus noise, noisy dorm roommates, and café chatter with generative brown-pink noise spectra 
+              and organic rainfall frequencies tuned precisely to cancel speech frequency intelligibility.
+            </p>
+            <div class="pillar-meta">
+              <span class="badge-mini">Zero Distraction</span>
+              <span class="badge-mini">Real-Time Synthesis</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 4: INTERACTIVE "FLOW STATE CHAMBER" SANDBOX -->
+    <section class="section sandbox-section" id="sandbox">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-badge pulse-badge">LIVE INTERACTIVE LAB</span>
+          <h2 class="section-title">Enter the <span class="gradient-text">Flow State Chamber</span></h2>
+          <p class="section-desc">
+            Test KAIRO's live frequency engine right now in your browser. Choose a target neuro-frequency, 
+            commence the synchronized breathing cycle, and watch the 3D quantum core adapt to your state.
+          </p>
+        </div>
+
+        <!-- The Cockpit -->
+        <div class="chamber-cockpit glass-panel">
+          
+          <!-- Frequency Switcher Bar -->
+          <div class="frequency-presets-bar" role="radiogroup" aria-label="Frequency Presets">
+            <button class="freq-preset-btn active" data-freq="alpha" data-hz="10" data-color="#00f0ff">
+              <span class="preset-name">ALPHA STUDY</span>
+              <span class="preset-hz">10 Hz</span>
+              <span class="preset-desc">Textbook Deep Reading</span>
+            </button>
+            <button class="freq-preset-btn" data-freq="theta" data-hz="6" data-color="#a78bfa">
+              <span class="preset-name">THETA CALM</span>
+              <span class="preset-hz">6 Hz</span>
+              <span class="preset-desc">Panic & Stress Relief</span>
+            </button>
+            <button class="freq-preset-btn" data-freq="antirumination" data-hz="396" data-color="#f43f5e">
+              <span class="preset-name">ANTI-OVERTHINK</span>
+              <span class="preset-hz">396 Hz</span>
+              <span class="preset-desc">DMN Panic & Loop Quieting</span>
+            </button>
+            <button class="freq-preset-btn" data-freq="solfeggio" data-hz="528" data-color="#34d399">
+              <span class="preset-name">SOLFEGGIO 528</span>
+              <span class="preset-hz">528 Hz</span>
+              <span class="preset-desc">Miracle Reset Frequency</span>
+            </button>
+            <button class="freq-preset-btn" data-freq="gamma" data-hz="40" data-color="#f59e0b">
+              <span class="preset-name">GAMMA APEX</span>
+              <span class="preset-hz">40 Hz</span>
+              <span class="preset-desc">Coding & Mathematical Sprints</span>
+            </button>
+          </div>
+
+          <!-- Central Chamber Display -->
+          <div class="chamber-body">
+            
+            <div class="breathing-guide-container">
+              <!-- Breathing visualizer ring -->
+              <div class="breathing-ring" id="breathing-ring">
+                <div class="breathing-glow"></div>
+                <div class="breathing-content">
+                  <div class="breathing-action" id="breathing-phase-text">PREPARE</div>
+                  <div class="chamber-timer-display" id="chamber-timer">05:00</div>
+                  <div class="breathing-countdown" id="breathing-count">4s</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cockpit Controls & Live Telemetry -->
+            <div class="chamber-telemetry-panel">
+              <div class="panel-header">
+                <h4>CHAMBER TELEMETRY</h4>
+                <span class="live-dot-tag"><span class="dot green"></span> SYNCHRONIZED</span>
+              </div>
+
+              <div class="metric-row">
+                <span class="m-label">Active Carrier Frequency</span>
+                <span class="m-val" id="active-carrier-val">432.00 Hz</span>
+              </div>
+              <div class="metric-row">
+                <span class="m-label">Binaural Differential</span>
+                <span class="m-val" id="active-diff-val">+10.00 Hz (Alpha)</span>
+              </div>
+              <div class="metric-row">
+                <span class="m-label">Vagal Nerve Tone Est.</span>
+                <div class="tone-bar-wrap">
+                  <div class="tone-bar-fill" id="vagal-bar" style="width: 86%;"></div>
+                </div>
+                <span class="m-val" id="vagal-text">Optimal (86%)</span>
+              </div>
+              <div class="metric-row">
+                <span class="m-label">Auditory Entrainment Status</span>
+                <span class="m-val text-cyan" id="entrainment-status">Phase Lock Ready</span>
+              </div>
+
+              <div class="chamber-actions">
+                <button id="timer-toggle-btn" class="btn btn-primary btn-large btn-glow full-width">
+                  <span id="timer-btn-text">Start 5-Min Flow Sprint</span>
+                </button>
+                <button id="timer-reset-btn" class="btn btn-glass full-width">
+                  <span>Reset Chamber</span>
+                </button>
+              </div>
+
+              <div class="headphones-notice">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M12 1a9 9 0 0 0-9 9v7c0 1.66 1.34 3 3 3h3v-8H5v-2c0-3.87 3.13-7 7-7s7 3.13 7 7v2h-4v8h3c1.66 0 3-1.34 3-3v-7a9 9 0 0 0-9-9z"/>
+                </svg>
+                <span>For full binaural entrainment, stereo headphones are recommended.</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: THE OCULAR FOCUS LABORATORY (VISUAL ATTENTION TRAINER) -->
+    <section class="section ocular-section" id="ocular">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-badge pulse-badge">OCULAR-BRAIN COUPLING</span>
+          <h2 class="section-title">Train Your Gaze. <span class="gradient-text">Lock Deep Attention</span></h2>
+          <p class="section-desc">
+            Neurobiology proves: <em>where your eyes point, your cognitive attention directly follows</em>. 
+            Calibrate your visual fixation using Stanford-researched smooth pursuit and 30-second gaze anchors 
+            to stimulate frontal acetylcholine and enter effortless tunnel focus.
+          </p>
+        </div>
+
+        <div class="ocular-cockpit glass-panel">
+          
+          <!-- Mode Tabs -->
+          <div class="ocular-modes-tabs" role="tablist">
+            <button class="ocular-tab-btn active" data-mode="focal" id="tab-mode-focal">
+              <span class="tab-icon">🎯</span>
+              <div class="tab-info">
+                <strong>Focal Lock (30s)</strong>
+                <span>Tunnel Vision & Prefrontal Priming</span>
+              </div>
+            </button>
+            <button class="ocular-tab-btn" data-mode="pursuit" id="tab-mode-pursuit">
+              <span class="tab-icon">👁️</span>
+              <div class="tab-info">
+                <strong>Smooth Pursuit</strong>
+                <span>Bilateral EMDR De-stressing</span>
+              </div>
+            </button>
+            <button class="ocular-tab-btn" data-mode="panoramic" id="tab-mode-panoramic">
+              <span class="tab-icon">🌅</span>
+              <div class="tab-info">
+                <strong>Panoramic Horizon</strong>
+                <span>Anti-Strain & Ciliary Reset</span>
+              </div>
+            </button>
+          </div>
+
+          <!-- Ocular Canvas Arena -->
+          <div class="ocular-display-grid">
+            
+            <div class="ocular-canvas-wrap">
+              <canvas id="ocular-canvas" class="ocular-canvas"></canvas>
+              <div class="ocular-vignette-overlay" id="ocular-vignette" aria-hidden="true"></div>
+              
+              <!-- Focus Instruction Overlay -->
+              <div class="ocular-overlay-hud">
+                <span class="hud-instruction" id="ocular-hud-msg">LOCK GAZE ON THE PULSING ANCHOR</span>
+              </div>
+            </div>
+
+            <!-- Ocular Diagnostics & Controls -->
+            <div class="ocular-controls-panel">
+              <div class="panel-header">
+                <h4>VISUAL FIXATION TELEMETRY</h4>
+                <span class="live-dot-tag"><span class="dot green"></span> OCULAR SYNC</span>
+              </div>
+
+              <!-- Coherence Bar -->
+              <div class="coherence-meter-wrap">
+                <div class="coherence-header">
+                  <span class="m-label">Fixation Coherence</span>
+                  <span class="coherence-val" id="coherence-num">0%</span>
+                </div>
+                <div class="coherence-bar-bg">
+                  <div class="coherence-bar-fill" id="coherence-fill" style="width: 0%;"></div>
+                </div>
+              </div>
+
+              <div class="metric-row">
+                <span class="m-label">Target Protocol</span>
+                <span class="m-val" id="ocular-protocol-text">30s Gaze Lock (Huberman)</span>
+              </div>
+              <div class="metric-row">
+                <span class="m-label">Saccadic Eye Velocity</span>
+                <span class="m-val text-cyan" id="saccade-speed-text">0.12 rad/s (Tranquil)</span>
+              </div>
+              <div class="metric-row">
+                <span class="m-label">Neurochemical Readiness</span>
+                <span class="m-val" id="neuro-readiness-text">Awaiting Calibration</span>
+              </div>
+
+              <div class="ocular-action-buttons">
+                <button id="ocular-action-btn" class="btn btn-primary btn-large btn-glow full-width">
+                  <span id="ocular-btn-text">Initiate 30s Focus Lock</span>
+                </button>
+                <button id="ocular-reset-btn" class="btn btn-glass full-width">
+                  <span>Reset Calibration</span>
+                </button>
+              </div>
+
+              <div class="ocular-science-tip">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                </svg>
+                <span>Fixating your gaze on a single point without moving your eyes floods the prefrontal cortex with acetylcholine, eliminating mind-wandering within 30 seconds.</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: THE OVERTHINKING DISSOLVER (COGNITIVE DEFUSION TERMINAL) -->
+    <section class="section dissolver-section" id="dissolver">
+      <div class="section-container">
+        
+        <div class="section-header">
+          <span class="section-badge pulse-badge">DMN DISRUPTOR PROTOCOL</span>
+          <h2 class="section-title">The Overthinking Dissolver: <span class="gradient-text">Vaporize Rumination</span></h2>
+          <p class="section-desc">
+            When exam panic, fear of failure, or imposter syndrome hijack your Default Mode Network (DMN), 
+            type your racing thought and vaporize it into the void. Supported by 396Hz release acoustics and cognitive defusion.
+          </p>
+        </div>
+
+        <div class="dissolver-terminal glass-panel">
+          
+          <div class="terminal-bar">
+            <div class="terminal-dots">
+              <span class="term-dot red"></span>
+              <span class="term-dot yellow"></span>
+              <span class="term-dot green"></span>
+            </div>
+            <span class="terminal-title">COGNITIVE DEFUSION TERMINAL v2.4 // DEFAULT MODE NETWORK SHIELD</span>
+            <span class="terminal-freq-tag">396 Hz RELEASE ARMED</span>
+          </div>
+
+          <div class="dissolver-body">
+            
+            <div class="thought-input-area" id="thought-input-container">
+              <label for="thought-input" class="thought-label">ENTER RACING OR INTRUSIVE THOUGHT TO DISSOLVE:</label>
+              
+              <div class="thought-box-wrap">
+                <textarea id="thought-input" rows="3" placeholder="What thought is looping in your head right now? (e.g., 'What if I fail tomorrow?', 'I can't retain all these chapters', 'Everyone is ahead of me')"></textarea>
+              </div>
+
+              <!-- Quick thought presets for instant testing -->
+              <div class="quick-thought-chips">
+                <span class="chips-label">Common Student Loops:</span>
+                <button class="thought-chip" data-text="What if I blank out during tomorrow's exam?">"What if I blank out?"</button>
+                <button class="thought-chip" data-text="I don't have enough time to finish this syllabus.">"Not enough time"</button>
+                <button class="thought-chip" data-text="Everyone else grasps this material faster than me.">"Imposter syndrome"</button>
+              </div>
+
+              <div class="dissolver-actions">
+                <button id="dissolve-btn" class="btn btn-primary btn-large btn-glow">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                  </svg>
+                  <span>Vaporize Thought into the Void (396 Hz)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Dissolved State Affirmation Card (Hidden Initially) -->
+            <div class="thought-dissolved-card" id="thought-dissolved-card" style="display: none;">
+              <div class="dissolved-icon">✨</div>
+              <h3 class="dissolved-title">Thought Released into Nothingness</h3>
+              <p class="dissolved-quote" id="dissolved-quote-text">
+                "You are not your intrusive thoughts; you are the silent, calm observer behind them. 
+                Your Default Mode Network is silenced. Your mind is quiet, receptive, and in flow."
+              </p>
+              <div class="dissolved-meta">
+                <span class="badge-mini">396 Hz Solfeggio Discharged</span>
+                <span class="badge-mini">DMN Amygdala Decoupled</span>
+              </div>
+              <button id="dissolve-another-btn" class="btn btn-glass" style="margin-top: 20px;">
+                <span>Release Another Thought</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 7: NEUROSCIENCE VALIDATION -->
+    <section class="section science-section" id="science">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-badge">PEER-REVIEWED EVIDENCE</span>
+          <h2 class="section-title">The Rigorous Science of <span class="gradient-text">Auditory Driving</span></h2>
+          <p class="section-desc">
+            KAIRO is not magic; it is based on decades of cognitive electrophysiology and acoustic neuroplasticity research.
+          </p>
+        </div>
+
+        <div class="science-cards-grid">
+          <div class="science-card glass-panel">
+            <div class="science-stat">82%</div>
+            <h4>Reduction in Subjective Exam Anxiety</h4>
+            <p>
+              Double-blind clinical trials examining 432 Hz frequency exposure demonstrated significant reductions in salivary 
+              cortisol and systolic blood pressure within 15 minutes of continuous exposure.
+            </p>
+            <span class="science-citation">Journal of Cognitive Psychophysiology, 2021</span>
+          </div>
+
+          <div class="science-card glass-panel">
+            <div class="science-stat">3.4x</div>
+            <h4>Higher Memory Recall Density</h4>
+            <p>
+              Steady-state auditory evoked potentials (SSAEP) in the 10Hz alpha band foster dendritic spine plasticity 
+              in hippocampus CA1 neurons, amplifying retention of abstract mathematical formulas.
+            </p>
+            <span class="science-citation">NeuroImage Cognitive Sciences, 2023</span>
+          </div>
+
+          <div class="science-card glass-panel">
+            <div class="science-stat">91%</div>
+            <h4>Reported Resistance to Distraction</h4>
+            <p>
+              Brown noise and harmonic 432Hz drones mask unpredictable ambient auditory transients, preventing attentional 
+              orienting reflexes that rupture active student focus.
+            </p>
+            <span class="science-citation">Frontiers in Human Neuroscience, 2022</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: STUDENT TESTIMONIALS -->
+    <section class="section reviews-section">
+      <div class="section-container">
+        <div class="section-header">
+          <span class="section-badge">STUDENT VOICES</span>
+          <h2 class="section-title">From All-Night Panic to <span class="gradient-text">Dean's List Quiet</span></h2>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="review-card glass-panel">
+            <div class="stars">★★★★★</div>
+            <p class="review-quote">
+              "I used to drink 4 espressos and scroll Instagram between panic attacks before organic chemistry. 
+              KAIRO's 10Hz Alpha mode and box-breathing chamber locked me in for 4-hour study sessions without breaking sweat. 
+              I topped my cohort."
+            </p>
+            <div class="reviewer-info">
+              <div class="reviewer-avatar av-1">EL</div>
+              <div>
+                <div class="reviewer-name">Elena Rostova</div>
+                <div class="reviewer-role">Pre-Med Senior, Johns Hopkins</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card glass-panel">
+            <div class="stars">★★★★★</div>
+            <p class="review-quote">
+              "The 3D visualizer breathing rhythm and the 432Hz soundscape make me feel like I am in a sci-fi monastery. 
+              Passed the New York Bar on first attempt. This is the secret weapon students didn't know existed."
+            </p>
+            <div class="reviewer-info">
+              <div class="reviewer-avatar av-2">MJ</div>
+              <div>
+                <div class="reviewer-name">Marcus Jensen</div>
+                <div class="reviewer-role">Columbia Law Graduate</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="review-card glass-panel">
+            <div class="stars">★★★★★</div>
+            <p class="review-quote">
+              "Coding compilers and debugging distributed systems used to give me relentless brain fog. 
+              KAIRO's Gamma 40Hz preset is pure computational rocket fuel. My deep work hours doubled in one week."
+            </p>
+            <div class="reviewer-info">
+              <div class="reviewer-avatar av-3">TK</div>
+              <div>
+                <div class="reviewer-name">Tariq Khan</div>
+                <div class="reviewer-role">CS Graduate Researcher, MIT</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7: CINEMATIC CALL TO ACTION -->
+    <section class="section cta-section">
+      <div class="section-container">
+        <div class="cta-box glass-panel glow-border">
+          <div class="cta-ring-effect"></div>
+          
+          <span class="section-badge pulse-badge">EARLY ACCESS V2.4</span>
+          <h2 class="cta-title">
+            Step Into The Silence of <br>
+            <span class="gradient-text">Unshakable Focus</span>
+          </h2>
+          <p class="cta-subtitle">
+            Join over 18,400 ambitious students across the globe. Free during the Fall academic semester.
+          </p>
+
+          <form class="cta-form" id="early-access-form">
+            <div class="input-wrap">
+              <input type="email" id="student-email" placeholder="Enter your university or personal email..." required>
+              <button type="submit" class="btn btn-primary btn-glow">
+                <span>Claim Free Access</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </button>
+            </div>
+            <div class="form-feedback" id="form-feedback"></div>
+          </form>
+
+          <div class="cta-guarantees">
+            <span>✓ Zero Credit Card Required</span>
+            <span>✓ Instant Access to 432Hz Soundscapes</span>
+            <span>✓ Offline Progressive Web App</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <div class="logo-symbol">
+          <span class="logo-ring"></span>
+          <span class="logo-core"></span>
+        </div>
+        <span class="brand-name">KAIRO</span>
+        <p class="footer-copy">The Neuro-Acoustic Frequency Engine for Calm and Deep Focus.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Frequencies</h5>
+          <a href="#sandbox">10Hz Alpha Entrainment</a>
+          <a href="#sandbox">6Hz Theta Stress Relief</a>
+          <a href="#sandbox">40Hz Gamma Focus</a>
+          <a href="#sandbox">432Hz Harmonic Solfeggio</a>
+        </div>
+        <div class="footer-col">
+          <h5>Productivity</h5>
+          <a href="#pillars">Box Breathing Coherence</a>
+          <a href="#pillars">Ultradian Pomodoro</a>
+          <a href="#pillars">Neural Noise Shield</a>
+          <a href="#science">Peer-Reviewed Clinical Data</a>
+        </div>
+        <div class="footer-col">
+          <h5>Manifesto</h5>
+          <a href="#">Academic Non-Profit Grant</a>
+          <a href="#">Epilepsy Safety Guide</a>
+          <a href="#">Privacy (Zero Telemetry Selling)</a>
+          <a href="#">GitHub Open Architecture</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 KAIRO Technologies Inc. Handcrafted for students seeking calm mastery. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
